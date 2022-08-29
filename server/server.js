@@ -8,15 +8,24 @@ app.use(cors())
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json())
 
-const today = new Date().toISOString().slice(0, 10);
+const today = new Date()
+const yd = new Date(today)
+
+
+yd.setDate(yd.getDate() - 1)
+const yesterday = yd.toISOString().slice(0, 10);
+
+
+
+
+
 const db = mysql.createConnection({
-    user: "root",
-    host: "localhost",
-    password: "1999MySqlOtis",
-    database: 'Restaur'
+    user: process.env.DB_USER,   //"sql11515960",
+    host: process.env.DB_HOST, //"sql11.freemysqlhosting.net",
+    password: process.env.DB_PASSWORD, //"8AYGPYj4b9",
+    database: process.env.DB_NAME, //"sql11515960"
 })
 db.connect(function (err) {
-    if (err) throw err;
     console.log("Connected!");
 });
 
@@ -38,18 +47,15 @@ app.get('/retrieveBooking', (req,res) => {
     const id = req.query.id
     const lName = req.query.lName
     const query = `SELECT * FROM BOOKINGS WHERE BookingID = ${id} AND LastName="${lName}"` 
-    
     query_and_send(query, res)
 })
 
 
 
-
-
-
 app.get('/checkAvailability', 
-            query('Mobile').isMobilePhone(),
-            query('date').isAfter(today),
+            query('Mobile').isMobilePhone().isLength(11).withMessage("Invalid mobile number"),
+            query('date').isAfter(yesterday).withMessage("Date cannot be in the past"),
+
 
             (req, res) => {
     
@@ -66,6 +72,7 @@ app.get('/checkAvailability',
     )`
 
     if (!errors.isEmpty()) {
+        console.log(errors.array())
       return res.status(400).json({ errors: errors.array() });
     }
     query_and_send(query, res)
@@ -95,7 +102,8 @@ app.delete('/deleteBooking', (req,res) => {
 
 
 
-const port = "8080"
+let port = process.env.PORT
+
 app.listen(port, () => {
     console.log(`Server running on port ${port}`)
 })
