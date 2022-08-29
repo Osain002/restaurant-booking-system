@@ -1,0 +1,77 @@
+.form-container{
+        padding-left: 10pt;
+        width: 30%;
+        border: 2px solid black;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: rgba(238, 238, 238, 0.321);
+}
+
+
+.main-form{
+        font-weight: bolder;
+        margin-top: 10pt;
+        
+}
+
+.instruction{
+        font-size: larger;
+        font-weight: lighter;
+        margin-bottom: 10pt
+}
+
+.main-form label{
+        display: inline-block;
+        width: 10vw;
+        text-align: right;
+}
+
+.main-form input{
+        border-radius: 3pt;
+        margin-top: 5pt;
+}
+
+.main-form input:hover{
+        border: 2px solid aqua;
+}
+
+.submit{
+        width:min-content;
+        margin-left:auto;
+        margin-right:auto;
+        margin-top: 20pt;
+        margin-bottom: 10pt;
+}
+
+.confirm-booking{
+        width:100%;
+}
+.confirm-booking span{
+        font-weight: bolder;
+        margin: 10pt;
+
+}
+
+.search{
+        width:min-content;
+        margin: auto;
+        margin-bottom: 10pt;
+        text-align: center;
+}
+
+.search h{
+        color: white;
+        
+}
+
+.search input[type=text]{
+        border-radius: 5pt;
+        width: 150pt
+}
+
+.errors{
+        color: red;
+        width:fit-content;
+        margin: auto;
+}
+
