@@ -29,26 +29,4 @@ Things to add if project was for real client:
 
 
 
-DATABASE STRUCTURE:
-
-
-CREATE TABLE `"db name"`.`TABLES` (
-  `TableID` INT NOT NULL,
-  `capacity` INT NOT NULL,
-  PRIMARY KEY (`TableID`));
-
-
-CREATE TABLE `"db name".`BOOKINGS` (
-  `BookingID` INT NOT NULL AUTO_INCREMENT,
-  `TableID` INT NOT NULL,
-  `Guests` INT NOT NULL,
-  `Date` DATE NOT NULL,
-  `CheckInTime` TIME NOT NULL,
-  `CheckOutTime` TIME NOT NULL,
-  `FirstName` TEXT NOT NULL,
-  `LastName` TEXT NOT NULL,
-  `Contact` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`BookingID`));
-
-
 
