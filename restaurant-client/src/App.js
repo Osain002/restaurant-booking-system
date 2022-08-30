@@ -9,11 +9,12 @@ import Search from './components/Search';
 import {getAvailability, sendBooking, get_booking} from './modules/requests'
 
 function App() {
+    const [isLoading, setIsLoading] = useState(false)
     const [availability, setAvailability] = useState()
     const [bookId, setBookId] = useState()
     const [formErrors, setFormErrors] = useState()
     const [isSearched, setIsSearched] = useState(false)
-    const [queryData, setQueryData] = useState({id: '',lName: ''})
+    const [queryData] = useState({id: '',lName: ''})
     const [refresh, setRefresh] = useState(false)
     const [data, setData] = useState({
         Date: '',
@@ -44,7 +45,7 @@ function App() {
         
     }
     if (!bookId && availability) {
-        //setFormErrors()
+        
         show = (
             <form onSubmit={e => sendBooking(e, data, setBookId)} className="main-form">
                 {
@@ -59,11 +60,18 @@ function App() {
         show = (
             <div>
                 
-                <form onSubmit={e => getAvailability(e, data, setAvailability, setFormErrors)}>
+                <form onSubmit={e => {
+                    getAvailability(e, data, setAvailability, setFormErrors)
+                    if (formErrors) setFormErrors(false)
+                    setIsLoading(true)
+                    
+                 }}>
                 {showErrors}
                     <Form data={data} />
+                {isLoading&&!formErrors?(<p>Please wait...</p>):(<p></p>)}
                 </form>
                 <Search get_booking={get_booking} queryData={queryData} setIsSearched={setIsSearched} setData={setData}/>
+
             </div>)
     } else {
         //etFormErrors()
@@ -84,6 +92,7 @@ function App() {
         setFormErrors()
         setIsSearched(false)
         setRefresh(false)
+        setIsLoading(false)
         setData({
             Date: '',
             PartySize: '',
@@ -101,7 +110,7 @@ function App() {
 
 
     return (
-        <div>
+        <div className='App'>
             <div className='title'>
                 <h1>
                     LeRestaurant
