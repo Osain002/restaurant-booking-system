@@ -1,0 +1,5 @@
+Things to consider for bulk database update:
+
+- Users should not notice any downtime while database is updating.
+- Users should not see any change to the data shown on the site
+- If a db update fails halfway, need to be able to roll back changes to a stable state
