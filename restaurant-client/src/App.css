@@ -5,10 +5,12 @@
         margin-left: auto;
         margin-right: auto;
         background-color: rgba(238, 238, 238, 0.321);
+        min-width: 300pt;
 }
 
 
 .main-form{
+        min-width: 300pt;
         font-weight: bolder;
         margin-top: 10pt;
         
@@ -26,6 +28,7 @@
         
 }
 .main-form label{
+        min-width: 100pt;
         display: inline-block;
         width: 10vw;
         text-align: right;
