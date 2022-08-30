@@ -28,6 +28,9 @@ const Form = ({ data }) => {
                 <label>No. People:</label>
                 <input type='number' min="1" max="10" onChange={e => { data.PartySize = e.target.value }} required />
             </div>
+            <div>
+                Opening times 09:00 - 17:00
+            </div>
 
             <div>
                 <label>From:</label>
